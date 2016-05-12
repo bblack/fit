@@ -54,6 +54,7 @@ fit
         if ($scope.canNext())
             $scope.from += $scope.size
     }
+    $scope.round = Math.round;
     $scope.$watch('items', function(items){
         $scope.itemRows = _.chunk(items, 4);
     })

@@ -21,7 +21,7 @@
                 <img ng-src='{{item._source.image}}' style='height:10em;' />
                 <div class='title'>
                     <span>{{item._source.item_name}}</span>,
-                    <strong>${{item._source.item_price}}</strong>
+                    <strong>${{round(item._source.item_price)}}</strong>
                     <span ng-if='item._source.on_sale'
                         class='label label-warning'>
                         On sale!

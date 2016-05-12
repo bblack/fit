@@ -11,10 +11,10 @@
     <div class='col-sm-9'>
         <h2 >
             <s ng-if='item._source.on_sale' class='text-muted small'>
-                ${{item._source.item_original_price}}
+                ${{item._source.item_original_price.toFixed(2)}}
             </s>
             <span>
-                ${{item._source.item_price}}
+                ${{item._source.item_price.toFixed(2)}}
             </span>
             <small ng-if='item._source.on_sale' >
                 <span class='label label-sm label-warning'>On sale!</span>
