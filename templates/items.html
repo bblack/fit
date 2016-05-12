@@ -4,8 +4,14 @@
             <input placeholder='Search' ng-model='searchString' ng-model-options='{debounce: 500}' class='form-control input-lg'/>
         </span>
     </div>
-
-    <div id='items' ng-repeat='row in itemRows' class='row' style='margin-bottom:2em;'>
+    <div ng-if='req.$$state.status === 2'>
+        i am error
+    </div>
+    <div ng-if='req.$$state.status === 0'>
+        Getting items...
+    </div>
+    <div ng-if='req.$$state.status === 1'
+        id='items' ng-repeat='row in itemRows' class='row' style='margin-bottom:2em;'>
         <div class='item col-sm-3' ng-repeat='item in row' >
             <a ng-href='#/item/{{item._source.id}}'>
                 <img ng-src='{{item._source.image}}' style='height:10em;' />

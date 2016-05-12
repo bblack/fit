@@ -28,7 +28,7 @@ fit
     $scope.$watch(function(){
         return _.pick($scope, 'size', 'from', 'searchString')
     }, function(newVal){
-        esclient.search({
+        $scope.req = esclient.search({
             index: 'items',
             q: newVal.searchString,
             size: newVal.size,
