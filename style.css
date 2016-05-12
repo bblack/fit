@@ -1,0 +1,16 @@
+body {
+    margin: 1em;
+}
+.item {
+    height: 15em;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.item .title {
+    color: white;
+    line-height: 1em;
+}
+.item .title span {
+    background-color: black;
+}

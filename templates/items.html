@@ -1,1 +1,14 @@
-items!
+<div class='container-fluid'>
+    <div class='row'>
+        <span class='col-lg-12'>
+            <input placeholder='Search' ng-model='searchString' ng-model-options='{debounce: 500}' class='form-control input-lg'/>
+        </span>
+    </div>
+
+    <div ng-repeat='row in itemRows' class='row'>
+        <div class='item col-sm-4' ng-repeat='item in row' ng-style='{"background-image": "url(" + item._source.image + ")"}'>
+            <!-- <img ng-src='{{item._source.image}}' /><br /> -->
+            <div class='title'><span>{{item._source.item_name}}</span></div>
+        </div>
+    </div>
+</div>

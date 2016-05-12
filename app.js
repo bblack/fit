@@ -9,7 +9,8 @@ fit
         templateUrl: 'templates/home.html'
     })
     .when('/items', {
-        templateUrl: 'templates/items.html'
+        templateUrl: 'templates/items.html',
+        controller: 'items'
     })
 })
 .service('esclient', function(esFactory){
@@ -17,19 +18,20 @@ fit
         host: 'http://search-fittery-challenge-pv7vc3ugoko5hngpgxdh4szuqm.us-east-1.es.amazonaws.com/'
     });
 })
-.controller('foo', function($scope, esclient){
-    $scope.things = ['one', 'two'];
-    esclient.ping({
+.controller('items', function($scope, esclient){
+    $scope.$watch('searchString', function(str){
+        esclient.search({
+            index: 'items',
+            q: str,
+            size: 24
+        })
+        .then(function(resbody){
+            $scope.items = resbody.hits.hits;
+        });
+    })
 
-    })
-    .then(function(x){
-        console.log('ok:', x);
-    })
 
-    esclient.search({
-        index: 'items'
+    $scope.$watch('items', function(items){
+        $scope.itemRows = _.chunk(items, 4);
     })
-    .then(function(resbody){
-        $scope.items = resbody.hits
-    })
-})
+});
