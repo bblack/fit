@@ -1,0 +1,12 @@
+<h1>
+    {{item._source.item_name}}
+</h1>
+<div class='media'>
+    <div class='media-left'>
+        <img class='media-object' ng-src='{{item._source.image}}' style='height: 20em;' />
+    </div>
+    <div class='media-body'>
+        <h2 class='media-heading'>${{item._source.item_price}}</h2>
+        {{item._source.description}}
+    </div>
+</div>

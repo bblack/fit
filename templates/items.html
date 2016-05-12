@@ -5,10 +5,15 @@
         </span>
     </div>
 
-    <div ng-repeat='row in itemRows' class='row'>
-        <div class='item col-sm-4' ng-repeat='item in row' ng-style='{"background-image": "url(" + item._source.image + ")"}'>
-            <!-- <img ng-src='{{item._source.image}}' /><br /> -->
-            <div class='title'><span>{{item._source.item_name}}</span></div>
+    <div ng-repeat='row in itemRows' class='row' style='margin-bottom:2em;'>
+        <div class='item col-sm-3' ng-repeat='item in row' >
+            <a ng-href='#/item/{{item._source.id}}'>
+                <img ng-src='{{item._source.image}}' style='height:10em;' />
+                <div class='title'>
+                    <span>{{item._source.item_name}}</span>,
+                    <strong>${{item._source.item_price}}</strong>
+                </div>
+            </a>
         </div>
     </div>
 </div>

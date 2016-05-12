@@ -8,9 +8,5 @@ body {
     background-repeat: no-repeat;
 }
 .item .title {
-    color: white;
-    line-height: 1em;
-}
-.item .title span {
-    background-color: black;
+    background-color:white;
 }
