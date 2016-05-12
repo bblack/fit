@@ -67,5 +67,8 @@ fit
     })
     .then(function(item){
         $scope.item = item;
+        var domainMatch = item._source.link.match(/(.*):\/\/(.*?)\//).slice(-1)
+        $scope.retailerDomain = (domainMatch && domainMatch[0]) ||
+            "the retailer's website";
     });
 })
