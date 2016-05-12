@@ -1,12 +1,33 @@
 <h1>
     {{item._source.item_name}}
+    <small>
+        {{retailer}}
+    </small>
 </h1>
-<div class='media'>
-    <div class='media-left'>
-        <img class='media-object' ng-src='{{item._source.image}}' style='height: 20em;' />
+<div class='row'>
+    <div class='col-sm-3'>
+        <img ng-src='{{item._source.image}}' style='height: 20em;' />
     </div>
-    <div class='media-body'>
-        <h2 class='media-heading'>${{item._source.item_price}}</h2>
-        {{item._source.description}}
+    <div class='col-sm-9'>
+        <h2 >
+            <s ng-if='item._source.on_sale' class='text-muted small'>
+                ${{item._source.item_original_price}}
+            </s>
+            <span>
+                ${{item._source.item_price}}
+            </span>
+            <small ng-if='item._source.on_sale' >
+                <span class='label label-sm label-warning'>On sale!</span>
+            </small>
+        </h2>
+        <p>
+            {{item._source.description}}
+        </p>
     </div>
 </div>
+<p>
+    <strong>Comes in:</strong>
+    <span ng-repeat='color in item._source.colors'>
+        {{color}}<span ng-if='!$last'>,</span>
+    </span>
+</p>
