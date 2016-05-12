@@ -22,19 +22,38 @@ fit
         host: 'http://search-fittery-challenge-pv7vc3ugoko5hngpgxdh4szuqm.us-east-1.es.amazonaws.com/'
     });
 })
-.controller('items', function($scope, esclient){
-    $scope.$watch('searchString', function(str){
+.controller('items', function($scope, esclient, $anchorScroll){
+    $scope.size = 24;
+    $scope.from = 0;
+    $scope.$watch(function(){
+        return _.pick($scope, 'size', 'from', 'searchString')
+    }, function(newVal){
         esclient.search({
             index: 'items',
-            q: str,
-            size: 24
+            q: newVal.searchString,
+            size: newVal.size,
+            from: newVal.from
         })
         .then(function(resbody){
             $scope.items = resbody.hits.hits;
+            $scope.hits = resbody.hits.total;
+            $anchorScroll()
         });
-    })
-
-
+    }, true);
+    $scope.canPrev = function(){
+        return $scope.from - $scope.size > 0;
+    }
+    $scope.prev = function(){
+        if ($scope.canPrev())
+            $scope.from -= $scope.size;
+    }
+    $scope.canNext = function(){
+        return $scope.from < $scope.hits;
+    }
+    $scope.next = function(){
+        if ($scope.canNext())
+            $scope.from += $scope.size
+    }
     $scope.$watch('items', function(items){
         $scope.itemRows = _.chunk(items, 4);
     })
