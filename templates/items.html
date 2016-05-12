@@ -1,7 +1,11 @@
 <div class='container-fluid'>
     <div class='row'>
         <span class='col-lg-12'>
-            <input placeholder='Search' ng-model='searchString' ng-model-options='{debounce: 500}' class='form-control input-lg'/>
+            <input placeholder='Search'
+                ng-model='searchString'
+                ng-model-options='{debounce: 500}'
+                ng-change='from = 0'
+                class='form-control input-lg'/>
         </span>
     </div>
     <div ng-if='req.$$state.status === 2'>
